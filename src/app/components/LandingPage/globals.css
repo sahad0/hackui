@@ -56,7 +56,7 @@
 
 .btn-3e {
 	padding: 25px 120px 25px 60px;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 .btn-3e:before {
