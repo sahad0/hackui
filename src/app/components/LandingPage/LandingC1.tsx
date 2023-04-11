@@ -3,8 +3,8 @@ import './globals.css'
 import Image from 'next/image';
 import { Inter } from 'next/font/google'
 import { Oswald } from 'next/font/google'
-import LottieComp from '../Lottie/Lottie';
-import { Button } from '../buttons/Button';
+import {  ButtonComp } from '../extras/buttons/Button';
+import LottieComp from '../extras/Lottie/Lottie';
 
 
 const oswald = Oswald({ subsets: ['latin'] })
@@ -20,7 +20,7 @@ export const LandingC1 = () => {
               <div className='text-lg font-mono'>
                 find the world of junior devs
               </div>
-              <Button text='Send data' />
+              <ButtonComp text='Search   data' />
         </div>
        
         <div className='w-screen sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex items-center justify-center object-cover '>

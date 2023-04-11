@@ -2,7 +2,6 @@
 
 import { FC, useEffect, useState } from 'react';
 import Lottie from 'react-lottie';
-import { Loader } from '../Loader/Loader';
 
 interface ComponentProps {
     path:string,
@@ -35,8 +34,8 @@ const LottieComp:FC<ComponentProps> = ({path}) => {
   };
 
   return (
-    <div className=' w-auto overflow-hidden'>
-    <Lottie options={defaultOptions}   />
+    <div className=' w-auto overflow-hidden max-h-[95%]'>
+    <Lottie options={defaultOptions}    />
     </div>
   );
 }

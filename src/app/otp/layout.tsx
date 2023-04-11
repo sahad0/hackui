@@ -1,6 +1,7 @@
+import './globals.css'
 
 export const metadata = {
-  title: 'Login',
+  title: 'OTP',
   description: 'Get some slice of hackers',
 }
 
