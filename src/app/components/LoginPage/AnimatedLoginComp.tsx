@@ -15,7 +15,7 @@ export const AnimatedLoginComp = () => {
 
 
   useEffect(()=>{
-    const text = process.env.PROFILE_EMAIL ? process.env.PROFILE_EMAIL : '';
+    const text = process.env.NEXT_PUBLIC_EMAIL ? process.env.NEXT_PUBLIC_EMAIL : '';
     const x = setTimeout(()=>{
       if(loader){
 

@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import React, { FC } from 'react'
-import  './Button.module.css';
 
 interface AppProps{
     text:string

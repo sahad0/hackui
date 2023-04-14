@@ -22,11 +22,6 @@ const Typewriter:FC<AppProps> = ({ text }) => {
     return () => clearInterval(intervalId);
   }, [text]);
 
-  useEffect(()=>{
-        setInterval(()=>{
-            setVisible(false)
-        },5000);
-  },[])
 
   return (
     <AnimatePresence>

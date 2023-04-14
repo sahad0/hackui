@@ -20,7 +20,9 @@ export const LandingC1 = () => {
               <div className='text-lg font-mono'>
                 find the world of junior devs
               </div>
-              <ButtonComp text='Search   data' />
+              <div>
+              <ButtonComp  text='Search   data' />
+              </div>
         </div>
        
         <div className='w-screen sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2 flex items-center justify-center object-cover '>
