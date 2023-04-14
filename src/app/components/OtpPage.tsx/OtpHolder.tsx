@@ -3,12 +3,17 @@
 
 import React, { ChangeEvent, KeyboardEvent, useCallback, useRef, useState } from 'react'
 import { OtpInput } from './OtpInput';
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { Inter, Oswald } from 'next/font/google'
 
+const oswald = Oswald({ subsets: ['latin'] })
 
 //context for saving current active index
 let currentActiveIndex:number = 0;
 
 export const OtpHolder = () => {
+
+
 
 
     const [otp,setOtp] = useState<string[]>(new Array(6).fill(''));
@@ -50,7 +55,15 @@ export const OtpHolder = () => {
             ))}
 
         </div>
-        <button>Hello</button>
+        <div className={`flex justify-center items-center font-sans mt-16`}>
+            <div className="w-4 h-4 border-2 rounded-full border-t-white border-pink-300 animate-spin mr-5"></div>
+            AutoFilling... your OTP
+        </div>
+        <button className="flex items-center justify-center w-16 h-16 rounded-full bg-black text-white hover:bg-gray-800 mt-10">
+            <AiOutlineArrowRight size={30}/>
+        </button>
+
+
     </div>
   )
 }
