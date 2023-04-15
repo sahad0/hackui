@@ -9,25 +9,11 @@ interface ComponentProps {
 
 
 const LottieComp:FC<ComponentProps> = ({path}) => {
-  const [animationData, setAnimationData] = useState(null);
-
-  useEffect(() => {
-    async function fetchAnimation() {
-      const res = await fetch(path);
-      const animationData = await res.json();
-      setAnimationData(animationData);
-    }
-    fetchAnimation();
-  }, []);
-
-  if (!animationData) {
-    return null;
-  }
 
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: animationData,
+    animationData: path,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice'
     }

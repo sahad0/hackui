@@ -35,18 +35,18 @@ async function getData() {
 
 const Otp = async()=> {
 
-  const data = await getData();
-  console.log(data.generateOTP);
+  const {generateOTP} = await getData();
+  const otp = generateOTP.toString();
 
 
 
 
   return (
-    <main className="flex flex-col ">
+    <div className="flex flex-col overflow-hidden ">
 
-        <OtpHolder />
+        <OtpHolder otp={otp} />
 
-    </main>
+    </div>
   )
 }
 

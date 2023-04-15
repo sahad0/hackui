@@ -32,7 +32,7 @@ export default function Login():JSX.Element {
 
 
   return (
-    <main className="flex min-h-screen bg-white items-center justify-center">
+    <div className="flex h-screen bg-white items-center justify-center">
 
         {
           loading ?
@@ -61,6 +61,6 @@ export default function Login():JSX.Element {
 
 
 
-    </main>
+    </div>
   )
 }

@@ -4,14 +4,14 @@ export const metadata = {
   description: 'Get some slice of hackers',
 }
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+  
+
+    <section>{children}</section>
   )
 }

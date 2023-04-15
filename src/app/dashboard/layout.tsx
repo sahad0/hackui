@@ -1,7 +1,7 @@
-import './globals.css'
+// import './globals.css'
 
 export const metadata = {
-  title: 'OTP',
+  title: 'DashBoard',
   description: 'Get some slice of hackers',
 }
 
@@ -11,7 +11,7 @@ export default function Layout({
   children: React.ReactNode
 }) {
   return (
-  
+ 
       <section>{children}</section>
-  )
+    )
 }
