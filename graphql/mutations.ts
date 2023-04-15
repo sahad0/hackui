@@ -1,14 +1,16 @@
-import { gql } from '@apollo/client';
+import { gql } from 'graphql-tag';
+
+
 
 export const GENERATE_OTP = gql`
-  mutation generateOTP($email:NullString,$phone:NullString) {
-    generateOTP(input:{email:$email,phone:$phone}) 
-  }
+mutation generateOTP($email:NullString) {
+  generateOTP(input:{email:$email}) 
+}
 `;
 
 export const LOGIN = gql`
-  mutation login($email:NullString,$phone:NullString,$otp:NullString) {
-    login(input:{email:$email,phone:$phone,otp:$otp}) {
+  mutation login($input:LoginRequest!) {
+    login(input:$input) {
       id
       name
       isAdmin
@@ -17,7 +19,7 @@ export const LOGIN = gql`
       sessionToken
     }
   }
-`
+`;
 
 
 

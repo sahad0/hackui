@@ -1,9 +1,7 @@
+
 import { Inter } from 'next/font/google'
 import { getClient } from '../lib/client/Provider';
 import { GENERATE_OTP } from '../../../graphql/mutations';
-import axios from 'axios';
-import { gql } from 'graphql-tag';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { OtpHolder } from '../components/OtpPage.tsx/OtpHolder';
 
 interface AppProps {
@@ -15,40 +13,37 @@ interface AppProps {
 
 const inter = Inter({ subsets: ['latin'] })
 
-async function getData() {
-  
-  const client = getClient();
-  
-  try {
- 
-    const {data} = await client.mutate({
-      mutation:GENERATE_OTP,
-      variables:{email: 'superadmin@example.com',phone:null}
-    });
-
-    return data;
-  
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 const Otp = async()=> {
 
-  const {generateOTP} = await getData();
-  const otp = generateOTP.toString();
-
+const {data}= await getData();
 
 
 
   return (
     <div className="flex flex-col overflow-hidden ">
-
-        <OtpHolder otp={otp} />
-
+        <OtpHolder otp={data.generateOTP} />
     </div>
   )
 }
 
 
+
+ async function getData() {
+
+
+  const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL?process.env.NEXT_PUBLIC_GRAPHQL_URL:'', {
+    cache:'no-store',
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: GENERATE_OTP.loc?.source.body,
+      variables:{email:process.env.NEXT_PUBLIC_EMAIL},
+    }),
+  });
+
+  return res.json();
+
+
+}
 export default Otp;

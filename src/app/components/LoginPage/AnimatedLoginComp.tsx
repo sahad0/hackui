@@ -38,7 +38,7 @@ export const AnimatedLoginComp = () => {
   useEffect(()=>{
     if(route){
       let k = setInterval(()=>{
-        router.push('otp');
+        router.replace('otp');
       },2000);
       return ()=>clearInterval(k);
 

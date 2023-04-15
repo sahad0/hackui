@@ -10,7 +10,7 @@ export const BackHandler = () => {
     useEffect(() => {
       const handleBackButton = (event:PopStateEvent) => {
         event.preventDefault();
-        router.push('/login');
+        router.replace('/login');
       };
   
       window.addEventListener('popstate', handleBackButton);

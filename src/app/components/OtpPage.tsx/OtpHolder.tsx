@@ -8,11 +8,21 @@ import { Inter, Oswald } from 'next/font/google'
 import {motion} from 'framer-motion'
 import { animateNext } from './animationFrame';
 import { useRouter } from 'next/navigation';
+import { getClient } from '@components/app/lib/client/Provider';
+import { LOGIN } from '../../../../graphql/mutations';
+import useSWR from 'swr';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
-interface AppProps {
+type OTP = {
     otp : string,
+}
+
+interface AppProps extends OTP{
+    handleChange?:()=>void,
+    handleBackSpace?:()=>void,
+    loginHandler?:()=>Promise<void>,
+    
 }
 
 //context for saving current active index
@@ -56,10 +66,28 @@ export const OtpHolder:FC<AppProps> = ({otp:otpFromServer}) => {
 
     const handleBackSpace = (e:KeyboardEvent<HTMLInputElement>,index:number)=>{
         currentActiveIndex = index;
-        console.log(currentActiveIndex)
         if(e.key==='Backspace'){
             setActive(currentActiveIndex-1);
         }
+    }
+
+    const loginHandler = async() =>{
+
+        const client = getClient();
+  
+        try {
+            const client = getClient();
+
+            const {data}:any = client.mutate({
+                mutation:LOGIN,
+                variables:{input:{email:process.env.NEXT_PUBLIC_EMAIL,otp:[...otp].join(''),phone:null}}
+            })
+
+        
+        } catch (error) {
+          console.error(error);
+        }
+        // ()=>router.push('dashboard');
     }
 
 
@@ -90,7 +118,7 @@ export const OtpHolder:FC<AppProps> = ({otp:otpFromServer}) => {
                 }
                     </div>
         
-        <button disabled={loader} onClick={()=>router.push('dashboard')} className="flex items-center justify-center w-16 h-16 rounded-full bg-black text-white hover:bg-gray-800 mt-10">
+        <button disabled={loader} onClick={loginHandler} className="flex items-center justify-center w-16 h-16 rounded-full bg-black text-white hover:bg-gray-800 mt-10">
             <AiOutlineArrowRight size={30}/>
         </button>
 
