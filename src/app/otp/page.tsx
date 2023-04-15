@@ -38,10 +38,9 @@ const {data}= await getData();
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       query: GENERATE_OTP.loc?.source.body,
-      variables:{email:process.env.NEXT_PUBLIC_EMAIL},
+      variables:{input:{email:process.env.NEXT_PUBLIC_EMAIL,phone:null}},
     }),
   });
-
   return res.json();
 
 

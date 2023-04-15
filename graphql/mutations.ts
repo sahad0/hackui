@@ -3,8 +3,8 @@ import { gql } from 'graphql-tag';
 
 
 export const GENERATE_OTP = gql`
-mutation generateOTP($email:NullString) {
-  generateOTP(input:{email:$email}) 
+mutation generateOTP($input:OTPRequest) {
+  generateOTP(input:$input) 
 }
 `;
 
@@ -13,9 +13,6 @@ export const LOGIN = gql`
     login(input:$input) {
       id
       name
-      isAdmin
-      orgUID
-      roleID
       sessionToken
     }
   }

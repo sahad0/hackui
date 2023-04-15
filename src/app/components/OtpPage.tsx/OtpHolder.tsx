@@ -28,6 +28,25 @@ interface AppProps extends OTP{
 //context for saving current active index
 let currentActiveIndex:number = 0;
 
+async function fetcher({otp}:{otp:string}) {
+    try{
+        const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL ? process.env.NEXT_PUBLIC_GRAPHQL_URL : '',{
+            cache:'no-store',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              query: LOGIN.loc?.source.body,
+              variables:{input:{email:process.env.NEXT_PUBLIC_EMAIL,otp:otp}},
+            }),
+          });
+        const data = await res.json();
+        return data;
+    }
+    catch(e){
+        
+    }
+  }
+
 
 
 export const OtpHolder:FC<AppProps> = ({otp:otpFromServer}) => {
@@ -39,6 +58,7 @@ export const OtpHolder:FC<AppProps> = ({otp:otpFromServer}) => {
     const [loader,setLoader] = useState<boolean>(true);
     const [active,setActive]= useState<number>(0);
     const inputRef = useRef(null);
+    const { mutate } = useSWR(process.env.NEXT_PUBLIC_GRAPHQL_URL, { revalidateOnMount: false ,fetcher:()=>fetcher({otp:otpFromServer})});
 
 
     const router = useRouter();
@@ -70,24 +90,17 @@ export const OtpHolder:FC<AppProps> = ({otp:otpFromServer}) => {
             setActive(currentActiveIndex-1);
         }
     }
+    
 
     const loginHandler = async() =>{
-
-        const client = getClient();
-  
         try {
-            const client = getClient();
-
-            const {data}:any = client.mutate({
-                mutation:LOGIN,
-                variables:{input:{email:process.env.NEXT_PUBLIC_EMAIL,otp:[...otp].join(''),phone:null}}
-            })
-
-        
+            const {sessionToken} = (await mutate()).data.login;
+            localStorage.setItem('auth',sessionToken);
+            router.push('dashboard');
         } catch (error) {
-          console.error(error);
+           alert('Contact the dev !'); 
         }
-        // ()=>router.push('dashboard');
+        
     }
 
 
