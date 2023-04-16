@@ -96,7 +96,7 @@ export const OtpHolder:FC<AppProps> = ({otp:otpFromServer}) => {
         try {
             const {sessionToken} = (await mutate()).data.login;
             localStorage.setItem('auth',sessionToken);
-            router.push('dashboard');
+            router.replace('/dashboard');
         } catch (error) {
            alert('Contact the dev !'); 
         }

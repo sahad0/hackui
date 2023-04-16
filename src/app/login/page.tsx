@@ -20,9 +20,6 @@ export default function Login():JSX.Element {
   useEffect(()=>{
 
     const x = setTimeout(()=>{
-      if(localStorage.getItem('auth')){
-          router.push('dashboard');
-      }
       setLoading(false)
     },4000)
 

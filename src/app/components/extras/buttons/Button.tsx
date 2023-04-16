@@ -14,7 +14,7 @@ export const ButtonComp:FC<AppProps> = ({text}):JSX.Element => {
 
 
   return (
-    <button onClick={()=>router.push('login')} className="btn btn-3 btn-3e icon-arrow-right text-[15px] font-mono mt-14 text-green-4 h-auto w-auto sm:h-20 sm:w-auto">{text}</button>
+    <button onClick={()=>router.push('/login')} className="btn btn-3 btn-3e icon-arrow-right text-[15px] font-mono mt-14 text-green-4 h-auto w-auto sm:h-20 sm:w-auto">{text}</button>
 
   )
 }

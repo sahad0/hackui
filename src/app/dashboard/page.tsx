@@ -1,27 +1,26 @@
 import React from "react";
 import { BackHandler } from "../components/DashBoardPage/BackHandler";
+import { DashBoardNav } from "../components/DashBoardPage/DashBoardNav";
 
 interface AppProps {
 
 }
 
 
-async function getData() {
-  
-
-}
 
 const DashBoard = async()=> {
 
 
   return (
     <>
-      <BackHandler />
-
-      
+    <BackHandler />
+    <DashBoardNav />
     </>
+      
   )
 }
 
 
 export default DashBoard;
+
+

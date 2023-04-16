@@ -1,11 +1,18 @@
 import { Inter } from 'next/font/google'
 import { Navbar } from './components/Navbar/Navbar'
 import { LandingC1 } from './components/LandingPage/LandingC1'
-import { BackHandler } from './components/DashBoardPage/BackHandler'
+import { redirect } from 'next/dist/server/api-utils';
+import { NextApiResponse } from 'next';
 
-const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+const inter = Inter({ subsets: ['latin'] });
+
+
+
+const  Landing = ()=> {
+
+  
+
   return (
     <div className="flex flex-col">
           <Navbar />
@@ -19,3 +26,6 @@ export default function Home() {
     </div>
   )
 }
+
+
+export default Landing;
