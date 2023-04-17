@@ -2,18 +2,18 @@ export const items  =  [
     {
         title : 'Filter',
         item: ['All', 'Active', 'Draft', 'Accepted', 'Archived'],
-        color:'green'
+        color:'text-green-400'
     },
     {
         title : 'Sort By',
         item: ['DateCreated', 'DateUpdated', 'Alphabetical'],
-        color:'pink'
+        color:'text-pink-400'
 
     },
     {
         title : 'Sort Direction',
         item: ['Ascending', 'Descending'],
-        color:'gray'
+        color:'text-gray-400'
     }
 
 ];

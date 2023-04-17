@@ -15,17 +15,20 @@ interface AppProps {
 export const Filter:FC<AppProps> = () => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isChildHovered,setIsChildHovered] = useState<boolean>(false);
 
 
   return (
         <>
-            <button onClick={()=>setIsOpen((k)=>!k)} className="bg-black text-white rounded-md p-2">
+            <button onMouseEnter={()=>setIsOpen(true)} onMouseLeave={()=>{setIsOpen(false),setIsChildHovered(false)}} className="bg-black text-white rounded-md p-2">
                 <CiSliderHorizontal size={25} />
             </button>
-            <div  className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-lg">
-                 {isOpen && (
-                    items.map((k)=>(
-                        <FilterParent title={k.title} item={k.item} color={k.color} />
+            <div  className="absolute top-full right-0 mt-0 bg-white rounded-md shadow-lg">
+                 {(isOpen || isChildHovered)  && (
+                    items.map((k,index)=>(
+                        <React.Fragment key={index}>
+                            <FilterParent title={k.title} item={k.item} color={k.color} isOpen={isOpen}  setIsOpen={setIsOpen} setIsChildHovered={setIsChildHovered} />
+                        </React.Fragment>
                     ))
                  )}
             </div>

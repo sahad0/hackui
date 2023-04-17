@@ -11,10 +11,19 @@ interface AppProps {
 const DashBoard = async()=> {
 
 
+
   return (
     <>
     <BackHandler />
     <DashBoardNav />
+
+    {/* <div className="font-mono text-xl text-gray-500 m-20 flex items-center justify-center">
+      Best Picks for you
+    </div> */}
+   
+
+  
+
     </>
       
   )

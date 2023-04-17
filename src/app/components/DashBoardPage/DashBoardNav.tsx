@@ -15,22 +15,7 @@ interface AppProps {
 
 }
 
-const items = [
-    {
-      title: "Parent 1",
-      subItems: [
-        { title: "Child 1-1", onClick: () => console.log("Child 1-1 clicked") },
-        { title: "Child 1-2", onClick: () => console.log("Child 1-2 clicked") },
-      ],
-    },
-    {
-      title: "Parent 2",
-      subItems: [
-        { title: "Child 2-1", onClick: () => console.log("Child 2-1 clicked") },
-        { title: "Child 2-2", onClick: () => console.log("Child 2-2 clicked") },
-      ],
-    },
-  ];    
+
 
 
 async function fetcher() {
@@ -92,7 +77,7 @@ export const DashBoardNav:FC<AppProps> = () => {
 
   return (
     <>
-         <div onClick={()=>{searchVisible ? setSearchVisibile(false) : null}} className={`w-screen  flex justify-center  h-screen ${searchVisible && 'blur-[12px] '}`}>
+         <div onClick={()=>{searchVisible ? setSearchVisibile(false) : null}} className={`w-screen  flex justify-center  h-24  ${searchVisible && 'blur-[12px] '}`}>
             <div className="w-screen ">
                 <div className="relative flex flex-row  w-screen mt-5">
 
