@@ -1,17 +1,19 @@
-import React, { Dispatch, FC, SetStateAction, useState } from 'react'
+import React, { Dispatch, FC, SetStateAction, memo, useState } from 'react'
 
 
 interface AppProps{
     title:string,
     item:string[],
     color:string,
-    isOpen:boolean,
     setIsOpen:Dispatch<SetStateAction<boolean>>,
     setIsChildHovered:Dispatch<SetStateAction<boolean>>,
+    handleDropdownClick:(index:number,selectedOption:string)=>void,
+    stateKey:number,
+
 }
 
 
-export const FilterParent:FC<AppProps> = ({item,title,color,setIsOpen,setIsChildHovered}) => {
+const FilterParent:FC<AppProps> = ({item,title,color,setIsOpen,setIsChildHovered,handleDropdownClick,stateKey}) => {
 
     const [hasChild,setHasChild] = useState<boolean>(false);
 
@@ -27,8 +29,8 @@ export const FilterParent:FC<AppProps> = ({item,title,color,setIsOpen,setIsChild
         <div  className="absolute  right-[100%]  bg-white rounded-md shadow-lg">
             {
                 hasChild && item.length>0 && (
-                    item.map((k)=>(
-                        <div onMouseEnter={()=>setHasChild(true)} onMouseLeave={()=>setHasChild(false)} className='relative'>
+                    item.map((k,index)=>(
+                        <div onClick={()=>{handleDropdownClick(stateKey,k),setIsOpen(false),setIsChildHovered(false)}} key={index} onMouseEnter={()=>setHasChild(true)} onMouseLeave={()=>setHasChild(false)} className='relative'>
                             <div  className="flex flex-col py-3 px-10 text-sm sm:text-md text-gray-800 hover:bg-gray-100 ">
                                 {k}
                             </div>
@@ -41,3 +43,6 @@ export const FilterParent:FC<AppProps> = ({item,title,color,setIsOpen,setIsChild
     </div>
   )
 }
+
+
+export default FilterParent;

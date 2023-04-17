@@ -1,22 +1,22 @@
-'use client'
 
-import React, { FC, useState } from 'react'
+import React, { Dispatch, FC, SetStateAction, useState } from 'react'
 import { CiSliderHorizontal } from "react-icons/ci";
 import { items } from '../data/FilterData';
-import { FilterParent } from './FilterParent';
+import  FilterParent  from './FilterParent';
 
 
 interface AppProps {
-
+    handleDropdownClick:(index:number,selectedOption:string)=>void,
 }
 
 
 
-export const Filter:FC<AppProps> = () => {
+export const Filter:FC<AppProps> = ({handleDropdownClick}) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isChildHovered,setIsChildHovered] = useState<boolean>(false);
 
+    
 
   return (
         <>
@@ -27,7 +27,7 @@ export const Filter:FC<AppProps> = () => {
                  {(isOpen || isChildHovered)  && (
                     items.map((k,index)=>(
                         <React.Fragment key={index}>
-                            <FilterParent title={k.title} item={k.item} color={k.color} isOpen={isOpen}  setIsOpen={setIsOpen} setIsChildHovered={setIsChildHovered} />
+                            <FilterParent title={k.title} stateKey={index} item={k.item} color={k.color} setIsOpen={setIsOpen} setIsChildHovered={setIsChildHovered} handleDropdownClick={handleDropdownClick} />
                         </React.Fragment>
                     ))
                  )}
