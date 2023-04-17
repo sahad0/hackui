@@ -3,7 +3,7 @@ import React, { Dispatch, FC, SetStateAction, useState } from 'react'
 import { CiSliderHorizontal } from "react-icons/ci";
 import { items } from '../data/FilterData';
 import  FilterParent  from './FilterParent';
-import { KeyTpes } from '../DashBoardNav';
+import { KeyTpes } from '../DashBoardParent';
 
 
 interface AppProps {

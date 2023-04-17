@@ -1,5 +1,5 @@
 import React, { Dispatch, FC, SetStateAction, memo, useState } from 'react'
-import { KeyTpes } from '../DashBoardNav';
+import { KeyTpes } from '../DashBoardParent';
 
 
 interface AppProps{

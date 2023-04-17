@@ -11,6 +11,7 @@ import { Users } from '../../../../types/types';
 import { LayoutGroup } from 'framer-motion';
 import { SearchArray } from '@components/app/helpers/Search';
 import {  SearchBar } from './SearchBar/SearchBar';
+import Image from 'next/image';
 
 
 const oswald = Oswald({ subsets: ['latin'] })
@@ -49,10 +50,9 @@ async function fetcher({key1,key2,key3}:KeyTpes) {
 }
 
 
-export const DashBoardNav:FC<AppProps> = () => {
+export const DashBoardParent:FC<AppProps> = () => {
     const [searchVisible,setSearchVisibile] = useState<boolean>(false);
     const [users,setUsers] = useState<Users[]>([]);
-    const [searchedUser,setSearchedUser] = useState<Users[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
     const [dropDownKeys, setDropDownKeys] = useState<KeyTpes>({key1: "All",key2: "DateCreated",key3: "Ascending"});
     const { mutate } = useSWR(process.env.NEXT_PUBLIC_GRAPHQL_URL, { revalidateOnMount: false ,fetcher:()=>fetcher({key1:dropDownKeys.key1,key2:dropDownKeys.key2,key3:dropDownKeys.key3})});
@@ -144,7 +144,19 @@ export const DashBoardNav:FC<AppProps> = () => {
 
 
         {/* CardDisplay Component */}
-            <CardHolder users={users} />
+        {
+          
+            users.length>0 ? (  <CardHolder users={users} />) : 
+            (<div className='w-100 h-auto flex items-center justify-center'>
+                 <Image
+                    src="/images/results.png"
+                    alt="My GIF"
+                    width={400}
+                    height={500}
+                />
+                
+            </div>)
+        }
     </div>
 
 
