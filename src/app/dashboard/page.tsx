@@ -19,9 +19,6 @@ const DashBoard = async()=> {
         <BackHandler />
         <DashBoardNav />
 
-
-  
-
     </div>
   )
 }

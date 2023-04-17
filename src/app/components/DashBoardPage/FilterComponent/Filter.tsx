@@ -3,15 +3,17 @@ import React, { Dispatch, FC, SetStateAction, useState } from 'react'
 import { CiSliderHorizontal } from "react-icons/ci";
 import { items } from '../data/FilterData';
 import  FilterParent  from './FilterParent';
+import { KeyTpes } from '../DashBoardNav';
 
 
 interface AppProps {
     handleDropdownClick:(index:number,selectedOption:string)=>void,
+    dropDownKeys:KeyTpes,
 }
 
 
 
-export const Filter:FC<AppProps> = ({handleDropdownClick}) => {
+export const Filter:FC<AppProps> = ({handleDropdownClick,dropDownKeys}) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isChildHovered,setIsChildHovered] = useState<boolean>(false);
@@ -27,7 +29,7 @@ export const Filter:FC<AppProps> = ({handleDropdownClick}) => {
                  {(isOpen || isChildHovered)  && (
                     items.map((k,index)=>(
                         <React.Fragment key={index}>
-                            <FilterParent title={k.title} stateKey={index} item={k.item} color={k.color} setIsOpen={setIsOpen} setIsChildHovered={setIsChildHovered} handleDropdownClick={handleDropdownClick} />
+                            <FilterParent title={k.title} stateKey={index} item={k.item} color={k.color} setIsOpen={setIsOpen} setIsChildHovered={setIsChildHovered} handleDropdownClick={handleDropdownClick} dropDownKeys={dropDownKeys} />
                         </React.Fragment>
                     ))
                  )}

@@ -1,4 +1,5 @@
 import React, { Dispatch, FC, SetStateAction, memo, useState } from 'react'
+import { KeyTpes } from '../DashBoardNav';
 
 
 interface AppProps{
@@ -9,11 +10,12 @@ interface AppProps{
     setIsChildHovered:Dispatch<SetStateAction<boolean>>,
     handleDropdownClick:(index:number,selectedOption:string)=>void,
     stateKey:number,
+    dropDownKeys:KeyTpes
 
 }
 
 
-const FilterParent:FC<AppProps> = ({item,title,color,setIsOpen,setIsChildHovered,handleDropdownClick,stateKey}) => {
+const FilterParent:FC<AppProps> = ({item,title,color,setIsOpen,setIsChildHovered,handleDropdownClick,stateKey,dropDownKeys}) => {
 
     const [hasChild,setHasChild] = useState<boolean>(false);
 
@@ -22,7 +24,7 @@ const FilterParent:FC<AppProps> = ({item,title,color,setIsOpen,setIsChildHovered
     <div onMouseEnter={()=>setIsChildHovered(true)} onMouseLeave={()=>setIsChildHovered(false)} className='relative'>
         <div onMouseEnter={()=>{setHasChild(true)}} onMouseLeave={()=>{setIsOpen(false),setHasChild(false)}} className="flex flex-col py-3 px-10 text-sm sm:text-md text-gray-800 hover:bg-gray-100 ">
             {title}
-            <span className={`text-xs sm:text-sm ${color}`}>{'(Ascending)'}</span>
+            <span className={`text-xs sm:text-sm ${color}`}>{stateKey===0 ? dropDownKeys.key1  : stateKey===1 ? dropDownKeys.key2 : dropDownKeys.key3}</span>
         </div>
 
 

@@ -7,6 +7,7 @@ import useSWR from 'swr';
 import styles from './CardHolder.module.css'
 import Card from './Card';
 import { Users } from '../../../../../types/types';
+import {motion} from 'framer-motion';
 
 interface AppProps {
   users:Users[];
@@ -22,7 +23,7 @@ interface AppProps {
 
 
   return (
-    <div className='flex flex-row gap-2 justify-center  h-auto w-screen  m-0 p-0 flex-wrap mt-10 '>
+    <div  className='flex flex-row gap-2 justify-center  h-auto w-screen  m-0 p-0 flex-wrap mt-10 '>
         {users.length > 0 && (
         <>
             {
