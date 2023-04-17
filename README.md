@@ -1,36 +1,56 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Hack Ui
 
-First, run the development server:
+![hackui](https://user-images.githubusercontent.com/88948601/232544305-9b4fa690-3e8b-4977-a08d-b96872301642.gif)
 
-```bash
-npm run dev
-# or
+
+
+
+First,clone the git repo and  run the development server using with dependencies installed:
+
+```
 yarn dev
-# or
-pnpm dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Important (!)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+.env.local
+```
+ file has to be created in root directory.
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+env must include the following keys
 
-To learn more about Next.js, take a look at the following resources:
+```
+NEXT_PUBLIC_EMAIL= **the email provided to access data
+NEXT_PUBLIC_GRAPHQL_URL= ** gql endpoint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Features
+The application has the following features:
 
-## Deploy on Vercel
+Search for developers by name or skills.  (## important note Press (Alt+ SpaceBar to access this feature after entering dashboard))
+Sort the list of developers by name, skills, or years of experience.
+Auto-authentication with auto OTP fill feature.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Technologies Used
+Next.js
+Tailwind CSS
+Apollo GraphQL client
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Features 
+Dont miss out
+
+
+
+
+
+
+
+

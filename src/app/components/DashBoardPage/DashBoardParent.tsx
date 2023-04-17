@@ -12,6 +12,8 @@ import {  SearchBar } from './SearchBar/SearchBar';
 import Image from 'next/image';
 import {CiLogout} from 'react-icons/ci';
 import { useRouter } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const oswald = Oswald({ subsets: ['latin'] })
@@ -62,6 +64,16 @@ export const DashBoardParent:FC<AppProps> = () => {
     useEffect(()=>{
         !localStorage.getItem('auth') && router.replace('/');
         getUsers(false,'');
+        toast.info('Note: Press Alt + SpaceBar To open search', {
+            position: "top-right",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
     },[]);
 
 
@@ -120,6 +132,7 @@ export const DashBoardParent:FC<AppProps> = () => {
   return (
     localStorage.getItem('auth') ?
     <>
+    <ToastContainer />
     <div className={`${searchVisible && 'blur-[4px] '}`}>
         
 
@@ -175,6 +188,8 @@ export const DashBoardParent:FC<AppProps> = () => {
                 <SearchBar setSearchVisibile={setSearchVisibile}  getUsers={getUsers} />
             )
         }
+
+
     </>
 
     :
