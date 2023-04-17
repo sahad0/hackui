@@ -7,6 +7,7 @@ import { Oswald } from 'next/font/google'
 import { GET_USERS } from '../../../../graphql/queries';
 import { Filter } from './FilterComponent/Filter';
 import  CardHolder  from './CardCmponent/CardsHolder';
+import { Users } from '../../../../types/types';
 
 
 const oswald = Oswald({ subsets: ['latin'] })
@@ -16,10 +17,16 @@ interface AppProps {
 
 }
 
+type KeyTpes= {
+    key1:string,
+    key2:string,
+    key3:string,
+}
 
 
 
-async function fetcher() {
+
+async function fetcher({key1,key2,key3}:KeyTpes) {
       const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL ? process.env.NEXT_PUBLIC_GRAPHQL_URL : '',{
         cache:'no-store',
         method: 'POST',
@@ -29,7 +36,7 @@ async function fetcher() {
         },
         body: JSON.stringify({
           query: GET_USERS.loc?.source.body,
-          variables:{search:{filter: 'All', sortBy: 'DateCreated', sortDir: 'Ascending', offset: 0, limit: 10}},
+          variables:{search:{filter: key1, sortBy: key2, sortDir: key3, offset: 0, limit: 10}},
         }),
       });
     const data = await res.json();
@@ -43,9 +50,15 @@ export const DashBoardNav:FC<AppProps> = () => {
 
     const [searchValue,setSearchValue] = useState<string>('');
     const [searchVisible,setSearchVisibile] = useState<boolean>(false);
+    const [users,setUsers] = useState<Users[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
-    const [dropDownKeys, setDropDownKeys] = useState<object>({key1: "All",key2: "DateCreated",key3: "Ascending"});
-    const { mutate } = useSWR(process.env.NEXT_PUBLIC_GRAPHQL_URL, { revalidateOnMount: false ,fetcher:()=>fetcher()});
+    const [dropDownKeys, setDropDownKeys] = useState<KeyTpes>({key1: "All",key2: "DateCreated",key3: "Ascending"});
+    const { mutate } = useSWR(process.env.NEXT_PUBLIC_GRAPHQL_URL, { revalidateOnMount: false ,fetcher:()=>fetcher({key1:dropDownKeys.key1,key2:dropDownKeys.key2,key3:dropDownKeys.key3})});
+
+
+    useEffect(()=>{
+        getUsers();
+    },[]);
 
 
     useEffect(() => {
@@ -63,6 +76,18 @@ export const DashBoardNav:FC<AppProps> = () => {
         window.removeEventListener('keydown', handleKeyDown);
         };
     }, [inputRef]);
+
+
+    useEffect(()=>{
+        getUsers();
+    },[dropDownKeys]);
+
+
+
+    const getUsers = async()=>{
+        const {users} = (await mutate()).data.users;
+        setUsers(users);
+    }
 
 
     const handleSearch = async(e:KeyEvent<HTMLInputElement>)=>{
@@ -89,6 +114,8 @@ export const DashBoardNav:FC<AppProps> = () => {
     <>
     <div className={`${searchVisible && 'blur-[4px] '}`}>
         
+
+        {/* Navbar */}
         <div onClick={()=>{searchVisible ? setSearchVisibile(false) : null}} className={`w-screen  flex justify-center  h-24 `}>
             <div className="w-screen ">
                 <div className="relative flex flex-row  w-screen mt-5">
@@ -111,13 +138,9 @@ export const DashBoardNav:FC<AppProps> = () => {
         
 
 
+        {/* CardDisplay Component */}
+        <CardHolder users={users} />
 
-        <CardHolder />
-
-
-
-
-       
     </div>
 
 

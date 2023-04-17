@@ -9,47 +9,16 @@ import Card from './Card';
 import { Users } from '../../../../../types/types';
 
 interface AppProps {
-
+  users:Users[];
 }
 
 
-async function fetcher() {
-    const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL ? process.env.NEXT_PUBLIC_GRAPHQL_URL : '',{
-      cache:'no-store',
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': localStorage.getItem('auth') as string,
-      },
-      body: JSON.stringify({
-        query: GET_USERS.loc?.source.body,
-        variables:{search:{filter: 'All', sortBy: 'DateCreated', sortDir: 'Ascending', offset: 0, limit: 10}},
-      }),
-    });
-  const data = await res.json();
-
-  return data;  
-
-}
 
 
- const CardHolder:FC<AppProps> = () => {
+ const CardHolder:FC<AppProps> = ({users}) => {
 
-  console.log("rendering")
 
-    const [users,setUsers] = useState<Users[]>([]);
 
-    const { mutate } = useSWR(process.env.NEXT_PUBLIC_GRAPHQL_URL, { revalidateOnMount: false ,fetcher:()=>fetcher()});
-
-    useEffect(()=>{
-        fetchUsers();
-    },[]);
-
-    const fetchUsers = async () => {
-        const {users} = (await mutate()).data.users;
-        console.log(users);
-        setUsers(users);
-    }
 
 
   return (

@@ -18,7 +18,7 @@ const Card:FC<AppProps> = ({item}) => {
 
   const arr = ['text-green-500','text-pink-500','text-blue-300','text-purple-500','text-yellow-500']
 
-  const arr1 = ['md:w-[30%]','md:w-[60%]','md:w-[40%]','md:w-[35%]','md:w-[70%]','md:w-[35%]',]
+  const arr1 = ['lg:w-[45%]','lg:w-[75%]','lg:w-[40%]','lg:w-[43%]','lg:w-[70%]','lg:w-[35%]',]
 
 
   return (
@@ -26,10 +26,12 @@ const Card:FC<AppProps> = ({item}) => {
     <div className="flex items-center m-10 flex-col md:flex-row justify-between ">
         
         <div>
-          <Image src="/images/LandingPage/boy_h.png" alt="Profile picture" height={50} width={50} className="rounded-full mr-4 mt-10" />
+          <div className='flex items-center justify-center'>
+            <Image src="/images/LandingPage/boy_h.png" alt="Profile picture" height={50} width={50} className="rounded-full mr-4 mt-10" />
+          </div>
           <div className="mt-10">
-            <h2 className={`text-xl font-mono ${arr[Math.floor(Math.random()*3)]} `}>John Doe</h2>
-            <p className="text-gray-600 text-sm">johndoe@example.com</p>
+            <h2 className={`text-xl font-mono ${arr[Math.floor(Math.random()*3)]} `}>{item.firstName}</h2>
+            <p className="text-gray-600 text-sm">{item.email}</p>
           </div>
         </div>
 
