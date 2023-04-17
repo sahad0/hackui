@@ -43,7 +43,7 @@ async function fetcher({otp}:{otp:string}) {
         return data;
     }
     catch(e){
-        
+        alert('No network')
     }
   }
 
@@ -98,7 +98,7 @@ export const OtpHolder:FC<AppProps> = ({otp:otpFromServer}) => {
             localStorage.setItem('auth',sessionToken);
             router.replace('/dashboard');
         } catch (error) {
-           alert('Contact the dev !'); 
+           alert('No Network !'); 
         }
         
     }

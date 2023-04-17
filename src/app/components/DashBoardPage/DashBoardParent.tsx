@@ -1,17 +1,17 @@
 'use client';
 
 import React, { FC, useEffect, useRef, useState ,} from 'react';
-import { KeyboardEvent as KeyEvent } from 'react';
 import useSWR from 'swr';
 import { Oswald } from 'next/font/google'
 import { GET_USERS } from '../../../../graphql/queries';
 import { Filter } from './FilterComponent/Filter';
 import  CardHolder  from './CardCmponent/CardsHolder';
 import { Users } from '../../../../types/types';
-import { LayoutGroup } from 'framer-motion';
 import { SearchArray } from '@components/app/helpers/Search';
 import {  SearchBar } from './SearchBar/SearchBar';
 import Image from 'next/image';
+import {CiLogout} from 'react-icons/ci';
+import { useRouter } from 'next/navigation';
 
 
 const oswald = Oswald({ subsets: ['latin'] })
@@ -56,8 +56,11 @@ export const DashBoardParent:FC<AppProps> = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [dropDownKeys, setDropDownKeys] = useState<KeyTpes>({key1: "All",key2: "DateCreated",key3: "Ascending"});
     const { mutate } = useSWR(process.env.NEXT_PUBLIC_GRAPHQL_URL, { revalidateOnMount: false ,fetcher:()=>fetcher({key1:dropDownKeys.key1,key2:dropDownKeys.key2,key3:dropDownKeys.key3})});
+    const router = useRouter();
+
 
     useEffect(()=>{
+        !localStorage.getItem('auth') && router.replace('/');
         getUsers(false,'');
     },[]);
 
@@ -96,7 +99,6 @@ export const DashBoardParent:FC<AppProps> = () => {
                 setUsers(arr);
             }
         }catch(e){
-
         }
      
 
@@ -116,6 +118,7 @@ export const DashBoardParent:FC<AppProps> = () => {
 
 
   return (
+    localStorage.getItem('auth') ?
     <>
     <div className={`${searchVisible && 'blur-[4px] '}`}>
         
@@ -126,13 +129,19 @@ export const DashBoardParent:FC<AppProps> = () => {
                 <div className="relative flex flex-row  w-screen mt-5">
 
                     <div className={`${oswald.className} w-[20%] flex justify-center items-center text-xl`}>
-                        Home
+                        Hire Devs
                     </div>
                     <div className=' w-[60%]'>
                       
                     </div>
-                    <div className={`relative w-[20%] flex justify-end items-center mr-[4%] sm:mr-[4%]`}>
+                    <div className={`relative w-[10%] sm:w-[8%] xl:w-[5%] flex justify-end items-center mr-[4%] sm:mr-[4%]`}>
                         <Filter handleDropdownClick={handleDropdownClick} dropDownKeys={dropDownKeys} />
+
+                    </div>
+                    <div className={`relative w-[15%] sm:w-[8%] xl:w-[5%] flex justify-end items-center mr-[4%] sm:mr-[4%]`}>
+                    <button onClick={()=>{localStorage.removeItem('auth'),router.replace('/')}} className="bg-black text-white rounded-md p-2">
+                        <CiLogout size={25} />
+                    </button>
 
                     </div>
 
@@ -167,8 +176,12 @@ export const DashBoardParent:FC<AppProps> = () => {
             )
         }
     </>
+
+    :
+    <></>
     
   )
+  
   
 }
 

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { getClient } from '../lib/client/Provider';
 import { GENERATE_OTP } from '../../../graphql/mutations';
 import { OtpHolder } from '../components/OtpPage.tsx/OtpHolder';
+import { OtpParent } from '../components/OtpPage.tsx/OtpParent';
 
 interface AppProps {
   data:number[],
@@ -22,7 +23,7 @@ const {data}= await getData();
 
   return (
     <div className="flex flex-col overflow-hidden ">
-        <OtpHolder otp={data.generateOTP} />
+        <OtpParent data={data} />
     </div>
   )
 }

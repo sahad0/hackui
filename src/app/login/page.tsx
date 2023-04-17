@@ -20,7 +20,9 @@ export default function Login():JSX.Element {
   useEffect(()=>{
 
     const x = setTimeout(()=>{
-      setLoading(false)
+      localStorage.getItem('auth') && router.replace('/dashboard');
+      setLoading(false);
+
     },4000)
 
     return ()=> clearInterval(x);
