@@ -44,8 +44,6 @@ Tailwind CSS
 Apollo GraphQL client
 
 
-## Features 
-Dont miss out
 
 
 

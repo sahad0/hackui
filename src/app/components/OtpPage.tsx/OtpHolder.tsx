@@ -4,11 +4,10 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { OtpInput } from './OtpInput';
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { Inter, Oswald } from 'next/font/google'
+import {  Oswald } from 'next/font/google'
 import {motion} from 'framer-motion'
 import { animateNext } from './animationFrame';
 import { useRouter } from 'next/navigation';
-import { getClient } from '@components/app/lib/client/Provider';
 import { LOGIN } from '../../../../graphql/mutations';
 import useSWR from 'swr';
 
@@ -95,7 +94,7 @@ export const OtpHolder:FC<AppProps> = ({otp:otpFromServer}) => {
     const loginHandler = async() =>{
         try {
             const {sessionToken} = (await mutate()).data.login;
-            localStorage.setItem('auth',sessionToken);
+            typeof window !== 'undefined' && localStorage.setItem('auth',sessionToken);
             router.replace('/dashboard');
         } catch (error) {
            alert('No Network !'); 

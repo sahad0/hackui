@@ -22,7 +22,7 @@ const Card:FC<AppProps> = ({item}) => {
 
 
   return (
-    <motion.div  initial={{ y : 5,opacity:0}}  whileInView={{ y: 0 ,opacity:1,}}  transition={{ duration:0.5, }} viewport={{once:true,}}     className={` rounded-3xl shadow-lg w-[100%] flex-wrap  m-10  bg-white  border border-gray-200 object-contain ${arr1[Math.floor(Math.random()*3)]}`}>
+    <motion.div  initial={{ y : 5,opacity:0}}  whileInView={{ y: 0 ,opacity:1,}}  transition={{ duration:0.5, }} viewport={{once:true,}}     className={` hover:bg-pink-100 transition duration-500 rounded-3xl shadow-lg w-[100%] flex-wrap  m-10  bg-white  border border-gray-200 object-contain ${arr1[Math.floor(Math.random()*3)]}`}>
     <div className="flex items-center m-10 flex-col md:flex-row justify-between ">
         
         <div>

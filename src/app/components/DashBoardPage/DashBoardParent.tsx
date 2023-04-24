@@ -33,6 +33,7 @@ export type KeyTpes= {
 
 
 async function fetcher({key1,key2,key3}:KeyTpes) {
+    
       const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL ? process.env.NEXT_PUBLIC_GRAPHQL_URL : '',{
         cache:'no-store',
         method: 'POST',
@@ -130,7 +131,7 @@ export const DashBoardParent:FC<AppProps> = () => {
 
 
   return (
-    localStorage.getItem('auth') ?
+    typeof window !== 'undefined' &&  localStorage.getItem('auth') ?
     <>
     <ToastContainer />
     <div className={`${searchVisible && 'blur-[4px] '}`}>
@@ -147,7 +148,7 @@ export const DashBoardParent:FC<AppProps> = () => {
                     <div className=' w-[60%]'>
                       
                     </div>
-                    <div className={`relative w-[10%] sm:w-[8%] xl:w-[5%] flex justify-end items-center mr-[4%] sm:mr-[4%]`}>
+                    <div className={`relative w-[10%] sm:w-[8%] xl:w-[5%] flex justify-end items-center mr-[4%] sm:mr-[4%] `}>
                         <Filter handleDropdownClick={handleDropdownClick} dropDownKeys={dropDownKeys} />
 
                     </div>

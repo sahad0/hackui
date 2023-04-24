@@ -22,7 +22,7 @@ export const Filter:FC<AppProps> = ({handleDropdownClick,dropDownKeys}) => {
 
   return (
         <>
-            <button onMouseEnter={()=>setIsOpen(true)} onMouseLeave={()=>{setIsOpen(false),setIsChildHovered(false)}} className="bg-black text-white rounded-md p-2">
+            <button onMouseEnter={()=>setIsOpen(true)} onMouseLeave={()=>{setIsOpen(false),setIsChildHovered(false)}} className="bg-pink-300  text-black rounded-md p-2">
                 <CiSliderHorizontal size={25} />
             </button>
             <div  className="absolute top-full right-0 mt-0 bg-white rounded-md shadow-lg">

@@ -15,12 +15,12 @@ export const OtpParent:FC<AppProps> = ({data}) => {
     const router = useRouter();
 
     useEffect(()=>{
-        localStorage.getItem('auth') && router.replace('/dashboard');
+        typeof window !== 'undefined' && localStorage.getItem('auth') && router.replace('/dashboard');
     },[]);
 
 
   return (
-    !localStorage.getItem('auth') ?
+    typeof window !== 'undefined' && !localStorage.getItem('auth') ?
    ( <OtpHolder otp={data.generateOTP} />)
    :
    <></>
